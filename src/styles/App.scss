@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+//fonts
+@font-face {
+  font-family: apercuMono;
+  src: url(../fonts/ApercuMonoPro-Regular.otf);
+}
+@font-face {
+  font-family: segoeSemiLight;
+  src: url(../fonts/segoeuisl.ttf);
+}
+
+//type faces
+h1 {
+  font-family: apercuMono;
+  font-size: 30;
+}
+h2.special {
+  font-family: segoeSemiLight;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+h5 {
+  font-family: apercuMono;
+  font-size: 24px;
+}
+h6 {
+  font-family: apercuMono;
+  font-size: 20px;
+}
+p {
+  font-family: segoeSemiLight;
+  font-size: 18px;
+}
+a {
+  color: black;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
