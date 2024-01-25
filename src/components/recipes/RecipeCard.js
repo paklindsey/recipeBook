@@ -1,10 +1,16 @@
 import "../../styles/recipes.scss";
 import recipeData from "./data";
+import { motion } from "framer-motion";
 
 const RecipeCard = ({ index }) => {
   const data = recipeData[index];
   return (
-    <div className="recipeCard">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="recipeCard"
+    >
       <div className="recipeCard__name">
         <h5>{data.name}</h5>
       </div>
@@ -39,7 +45,7 @@ const RecipeCard = ({ index }) => {
           {data.credit}
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

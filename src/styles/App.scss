@@ -18,6 +18,9 @@
 h1 {
   font-family: apercuMono;
   font-size: 30;
+  @media screen and (max-width: 768px) {
+    font-size: 26px;
+  }
 }
 h2.special {
   font-family: segoeSemiLight;
@@ -41,5 +44,8 @@ a {
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+  }
+  @media screen and (max-width: 768px) {
+    word-break: break-all;
   }
 }
