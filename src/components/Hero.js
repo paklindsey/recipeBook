@@ -1,17 +1,21 @@
 import "../styles/hero.scss";
 import { motion } from "framer-motion";
+import { Typewriter } from "react-simple-typewriter";
 
 const Hero = () => {
   return (
     <div className="hero">
       <div className="hero__text">
-        <motion.h1
-          initial={{ y: "50vh", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          Hi, Welcome to My Recipe Book
-        </motion.h1>
+        <h1>
+          <Typewriter
+            words={["Hi, Welcome to my Recipe Book"]}
+            cursor
+            cursorStyle="_"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+        </h1>
         <motion.div
           initial={{ y: "50vh", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
