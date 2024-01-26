@@ -3,6 +3,7 @@ import chiaSeedPudding from "../../assets/chiaSeedPudding.jpg";
 import savoryOats from "../../assets/savoryOats.jpg";
 import vermicelli from "../../assets/vermicelliNoodleBowl.jpg";
 import padkrapow from "../../assets/padkrapow.jpg";
+import crispyCabbage from "../../assets/crispyCabbage.jpg";
 
 const recipeData = [
   {
@@ -116,6 +117,24 @@ const recipeData = [
       "assemble beef, rice, poached egg, scallion",
     ],
     credit: "",
+  },
+  {
+    name: "Creamy Cabbage",
+    image: crispyCabbage,
+    ingredients: [
+      "hispi cabbage",
+      "tofu",
+      "salt",
+      "pepper",
+      "miso",
+      "sesame seeds",
+      "chives",
+      "rice wine vinegar",
+      "chili oil",
+    ],
+    directions: ["follow directions in credit reel below"],
+    credit:
+      "https://www.instagram.com/reel/Cy2_tQfsh6_/?igsh=MTRiYjBqdW80ZXE5dA==",
   },
 ];
 

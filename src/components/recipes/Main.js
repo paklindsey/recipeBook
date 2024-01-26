@@ -9,6 +9,7 @@ const RecipesMain = () => {
       <RecipeCard index={2} />
       <RecipeCard index={3} />
       <RecipeCard index={4} />
+      <RecipeCard index={5} />
     </section>
   );
 };
