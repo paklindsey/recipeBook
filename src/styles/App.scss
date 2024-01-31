@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -13,34 +15,61 @@
   font-family: segoeSemiLight;
   src: url(../fonts/segoeuisl.ttf);
 }
+@font-face {
+  font-family: waverly;
+  src: url(../fonts/waverly.ttf);
+}
+@font-face {
+  font-family: tangerine;
+  src: url("../fonts/Tangerine.otf");
+}
+@font-face {
+  font-family: juanaMed;
+  src: url("../fonts/juanaMed.otf");
+}
 
 //type faces
 h1 {
-  font-family: apercuMono;
-  font-size: 30;
+  font-family: waverly;
+  font-size: 120px;
+  line-height: 100px;
+  color: $cream;
   @media screen and (max-width: 768px) {
-    font-size: 26px;
+    font-size: 40px;
+    line-height: 50px;
   }
 }
-h2.special {
-  font-family: segoeSemiLight;
-  font-size: 16px;
-  letter-spacing: 2px;
+h1.large {
+  font-family: waverly;
+  font-size: 150px;
+  line-height: 125px;
+  color: $cream;
+  @media screen and (max-width: 768px) {
+    font-size: 50px;
+    line-height: 50px;
+  }
 }
-h5 {
-  font-family: apercuMono;
-  font-size: 24px;
+h2 {
+  font-family: juanaMed;
+  font-size: 50px;
+  letter-spacing: -4%;
+  line-height: 109%;
+  color: $navy;
 }
+
 h6 {
-  font-family: apercuMono;
+  font-family: juanaMed;
   font-size: 20px;
+  letter-spacing: -4%;
+  line-height: 109%;
+  color: $navy;
 }
 p {
   font-family: segoeSemiLight;
   font-size: 18px;
 }
 a {
-  color: black;
+  color: $navy;
   text-decoration: none;
   &:hover {
     text-decoration: underline;

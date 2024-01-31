@@ -1,36 +1,56 @@
-import "../styles/hero.scss";
-import { motion } from "framer-motion";
-import { Typewriter } from "react-simple-typewriter";
+import "../styles/home.scss";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import useWidthSetter from "../hooks/useWidthSetter";
+import heroBg from "../assets/heroBg.png";
+import heroBgM from "../assets/heroBgM.png";
 
 const Hero = () => {
+  const width = useWidthSetter();
+
+  const textRef = useRef();
+
+  const { scrollYProgress } = useScroll({
+    target: textRef,
+    // container: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const x2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const imgY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
   return (
-    <div className="hero">
-      <div className="hero__text">
-        <h1>
-          <Typewriter
-            words={["Hi, Welcome to my Recipe Book"]}
-            cursor
-            cursorStyle="_"
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1000}
-          />
-        </h1>
+    <div className="hero" ref={textRef}>
+      <div className="hero__wrapper">
+        <div className="hero__wrapper__text">
+          <motion.h1
+            initial={{ x: -80 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            style={{ x: x }}
+          >
+            {" "}
+            no chef
+          </motion.h1>
+          <motion.h1
+            className="large"
+            initial={{ x: 80 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            style={{ x: x2 }}
+          >
+            required
+          </motion.h1>
+        </div>
         <motion.div
-          initial={{ y: "50vh", opacity: 0 }}
+          className="hero__wrapper__image"
+          initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="hero__text__subtitle"
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          style={{ y: imgY }}
         >
-          <h2 className="special">
-            You know how when you ask asian moms, ‘how much of this [ingredient]
-            do i put in?’ and they just kind of give you that look and say,
-            ‘uhm, enough’?
-          </h2>
-          <h2 className="special">
-            Yeah, thats kind of how this experience is going to go. So take
-            everything with a grain of salt, or a pinch 😉
-          </h2>
+          <img src={width > 900 ? heroBg : heroBgM} alt="toast on plate" />
         </motion.div>
       </div>
     </div>

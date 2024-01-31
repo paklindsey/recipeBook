@@ -1,0 +1,90 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.hero {
+  @include flexColCenter;
+  justify-content: flex-end;
+  height: 100vh;
+  padding-bottom: 2rem;
+  @media screen and (max-width: 900px) {
+  }
+
+  &__wrapper {
+    @include flexColCenter;
+    position: relative;
+    width: 100%;
+    &__text {
+      text-align: center;
+      position: absolute;
+      top: -20%;
+      z-index: 1;
+      @media screen and (max-width: 900px) {
+        top: -10%;
+      }
+      :nth-child(1) {
+        margin-bottom: 3rem;
+        @media screen and (max-width: 900px) {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    &__image {
+      width: 90%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.pinnedText {
+  height: 200vh;
+  position: relative;
+  &__single {
+    height: 200vh;
+    @media screen and (max-width: 900px) {
+      height: 100vh;
+    }
+    &__textBlock {
+      @include flexColCenter;
+      position: sticky;
+      top: 30%;
+      @media screen and (max-width: 900px) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      h2 {
+        width: 550px;
+        text-align: center;
+        margin-bottom: 3rem;
+        @media screen and (max-width: 900px) {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
+
+.horizontalText {
+  height: 200vh;
+  @media screen and (max-width: 900px) {
+    height: 100vh;
+  }
+  &__textCont {
+    position: sticky;
+    top: 50%;
+    margin-left: 50%;
+    h1 {
+      white-space: nowrap;
+    }
+    span {
+      color: $cream;
+    }
+    a {
+      text-decoration: underline;
+      &:hover {
+        color: $sage;
+      }
+    }
+  }
+}
