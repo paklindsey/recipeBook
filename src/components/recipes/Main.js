@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
+import Context from "../../context/Context";
 import { onSnapshot, collection } from "firebase/firestore";
 import "../../styles/recipes.scss";
 import RecipeCard from "./RecipeCard";
 import db from "../../config/firebase";
 
 const RecipesMain = () => {
-  const [recipes, setRecipes] = useState([
-    { name: "Loading...", id: "initial" },
-  ]);
-  console.log(recipes);
+  const { data, setData } = useContext(Context);
+  // const [recipes, setRecipes] = useState([
+  //   { name: "Loading...", id: "initial" },
+  // ]);
   useEffect(
     () =>
       onSnapshot(collection(db, "recipes"), (snapshot) =>
-        setRecipes(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        setData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       ),
     []
   );
+  console.log("data", data);
   return (
     <section className="recipesMain">
       <RecipeCard index={0} />

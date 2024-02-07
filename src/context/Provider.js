@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MyContext from "./context";
+import MyContext from "./Context";
 
 const Provider = ({ children }) => {
   const [data, setData] = useState("Initial data");
