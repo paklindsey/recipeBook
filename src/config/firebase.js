@@ -1,6 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  snapshot,
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,5 +20,25 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export default getFirestore();
+initializeApp(firebaseConfig);
+
+//initialize services
+const db = getFirestore();
+
+// collection ref -> reaching into our firestore db and grabbing a specific collection
+const colRef = collection(db, "recipes");
+
+// get collection data
+getDocs(colRef)
+  .then((snapshot) => {
+    let recipes = [];
+    snapshot.docs.forEach((doc) => {
+      recipes.push({ ...doc.data(), id: doc.id });
+    });
+    console.log(recipes);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+export default db;
