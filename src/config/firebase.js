@@ -2,10 +2,11 @@
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
-  collection,
-  getDocs,
-  snapshot,
+  // collection,
+  // getDocs,
+  // snapshot,
 } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,25 +21,25 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
 //initialize services
-const db = getFirestore();
+export const db = getFirestore();
 
-// collection ref -> reaching into our firestore db and grabbing a specific collection
-const colRef = collection(db, "recipes");
+// // collection ref -> reaching into our firestore db and grabbing a specific collection
+// const colRef = collection(db, "recipes");
 
-// get collection data
-getDocs(colRef)
-  .then((snapshot) => {
-    let recipes = [];
-    snapshot.docs.forEach((doc) => {
-      recipes.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(recipes);
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+// // get collection data
+// getDocs(colRef)
+//   .then((snapshot) => {
+//     let recipes = [];
+//     snapshot.docs.forEach((doc) => {
+//       recipes.push({ ...doc.data(), id: doc.id });
+//     });
+//     console.log(recipes);
+//   })
+//   .catch((err) => {
+//     console.log(err.message);
+//   });
 
-export default db;
+export const storage = getStorage(app);

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import RecipesMain from "./components/recipes/Main";
 import Navbar from "./components/Navbar";
+import AddRecipeForm from "./components/recipes/AddRecipeForm";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<RecipesMain />} />
+        <Route path="addRecipe" element={<AddRecipeForm />} />
       </Routes>
     </div>
   );

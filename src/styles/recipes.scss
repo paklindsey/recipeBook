@@ -3,6 +3,22 @@
 @import "./mixins.scss";
 @import "./variables.scss";
 
+.addRecipeButton {
+  padding: 0 2rem;
+  margin-bottom: 3rem;
+  button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    img {
+      margin-right: 1rem;
+    }
+    p {
+      color: $navy;
+    }
+  }
+}
+
 .recipes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -19,6 +35,42 @@
       width: 100%;
       align-self: center;
       padding: 2rem;
+    }
+  }
+}
+
+.addRecipe {
+  padding: 2rem 2rem;
+  &__content {
+    background-color: $navy;
+    padding: 4rem 4rem;
+    h2 {
+      margin-bottom: 2rem;
+      color: white;
+      font-family: tangerine;
+    }
+    form {
+      @include flexCol;
+      label {
+        font-family: juanaMed;
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+      input {
+        border: none;
+        border-radius: 17px;
+        background-color: #fff;
+        outline: none;
+        height: 35px;
+        width: 50%;
+        margin-bottom: 3rem;
+      }
+      .submitButton {
+        background-color: $cream;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+      }
     }
   }
 }
