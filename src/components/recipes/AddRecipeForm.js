@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/recipes.scss";
 import { addDoc, collection } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, put } from "firebase/storage";
 import { db, storage } from "../../config/firebase";
 import { v4 } from "uuid";
 
@@ -10,6 +10,7 @@ const AddRecipeForm = () => {
   let [ingredients, setIngredients] = useState([]);
   let [directions, setDirections] = useState([]);
   let [imageUpload, setImageUpload] = useState(null);
+  let [imageURL, setImageURL] = useState("");
 
   const handleIngredients = (str) => {
     str = str.split(",");
@@ -25,17 +26,22 @@ const AddRecipeForm = () => {
     e.preventDefault();
 
     const collectionRef = collection(db, "recipes");
-    const payload = { name, ingredients, directions };
+    const payload = { name, ingredients, directions, imageURL };
     await addDoc(collectionRef, payload);
   };
 
-  const uploadImage = () => {
+  const uploadImage = (e) => {
+    e.preventDefault();
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then(() => {
       alert("image uploaded");
+      getDownloadURL(imageRef).then((url) => {
+        setImageURL(url);
+      });
     });
   };
+
   return (
     <div className="addRecipe">
       <div className="addRecipe__content">

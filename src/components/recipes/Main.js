@@ -38,7 +38,7 @@ const RecipesMain = () => {
           recipes.map((card) => (
             <div className="recipes__card" key={card.id}>
               <h6>{card.name}</h6>
-              <img src={card.image} alt="food" />
+              <img src={card.imageURL} alt="food" />
             </div>
           ))}
       </section>
