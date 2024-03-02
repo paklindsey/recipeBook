@@ -1,12 +1,15 @@
 import { useState } from "react";
 import "../../styles/recipes.scss";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { ref, uploadBytes } from "firebase/storage";
+import { db, storage } from "../../config/firebase";
+import { v4 } from "uuid";
 
 const AddRecipeForm = () => {
   let [name, setName] = useState("");
   let [ingredients, setIngredients] = useState([]);
   let [directions, setDirections] = useState([]);
+  let [imageUpload, setImageUpload] = useState(null);
 
   const handleIngredients = (str) => {
     str = str.split(",");
@@ -26,6 +29,13 @@ const AddRecipeForm = () => {
     await addDoc(collectionRef, payload);
   };
 
+  const uploadImage = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then(() => {
+      alert("image uploaded");
+    });
+  };
   return (
     <div className="addRecipe">
       <div className="addRecipe__content">
@@ -52,6 +62,14 @@ const AddRecipeForm = () => {
             value={directions}
             onChange={(e) => handleDirections(e.target.value)}
           />
+          <label>Upload an Image</label>
+          <input
+            type="file"
+            onChange={(e) => {
+              setImageUpload(e.target.files[0]);
+            }}
+          />
+          <button onClick={uploadImage}>Upload Image</button>
           <input type="submit" className="submitButton" />
         </form>
       </div>
