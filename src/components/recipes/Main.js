@@ -6,9 +6,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import addIcon from "../../assets/addButton.svg";
+import xButton from "../../assets/xButton.svg";
 
 const RecipesMain = () => {
   const [popoutOpen, setPopoutOpen] = useState(false);
+  const [currRecipe, setCurrentRecipe] = useState(null);
   const [recipes, setRecipes] = useState([
     { name: "Loading...", id: "initial" },
   ]);
@@ -19,6 +21,11 @@ const RecipesMain = () => {
       ),
     []
   );
+
+  const handlePopout = (card) => {
+    setCurrentRecipe(card);
+    setPopoutOpen(true);
+  };
 
   return (
     <>
@@ -36,11 +43,55 @@ const RecipesMain = () => {
       <section className="recipes">
         {recipes &&
           recipes.map((card) => (
-            <div className="recipes__card" key={card.id}>
-              <h6>{card.name}</h6>
-              <img src={card.imageURL} alt="food" />
-            </div>
+            <button onClick={() => handlePopout(card)} key={card.name}>
+              <div
+                className="recipes__card"
+                key={card.id}
+                style={{ backgroundImage: `URL(${card.imageURL})` }}
+              >
+                <div className="overlay" />
+                <h6>{card.name}</h6>
+              </div>
+            </button>
           ))}
+        {popoutOpen && (
+          <div className="recipesPopout">
+            <div className="recipesPopout__mainCont">
+              <div className="closeButton">
+                <button onClick={() => setPopoutOpen(false)}>
+                  <img src={xButton} alt="circle with x" />
+                </button>
+              </div>
+              <div
+                className="headerImg"
+                style={{ backgroundImage: `URL(${currRecipe.imageURL})` }}
+              />
+              <div className="info">
+                <div className="info__header">
+                  <h2>{currRecipe.name}</h2>
+                </div>
+                <div className="info__lists">
+                  <div className="info__lists__ingredients">
+                    <p className="bold">Ingredients</p>
+                    <ul>
+                      {currRecipe.ingredients.map((ingredient) => (
+                        <li key={currRecipe.ingredient}>{ingredient}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="bold">Directions</p>
+                    <ul>
+                      {currRecipe.directions.map((direction) => (
+                        <li key={currRecipe.direction}>{direction}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     </>
   );
