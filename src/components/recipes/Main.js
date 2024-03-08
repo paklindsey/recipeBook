@@ -27,6 +27,28 @@ const RecipesMain = () => {
     setPopoutOpen(true);
   };
 
+  const cardsVariant = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        duration: 1.5,
+        ease: "easeInOut",
+        staggerChildren: 1.5,
+      },
+    },
+  };
+  const cardsChildVariant = {
+    initial: {
+      y: -30,
+    },
+    animate: {
+      y: 0,
+    },
+  };
+
   return (
     <>
       <section className="addRecipeButton">
@@ -43,24 +65,35 @@ const RecipesMain = () => {
       <section className="recipes">
         {recipes &&
           recipes.map((card) => (
-            <button onClick={() => handlePopout(card)} key={card.name}>
-              <div
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              variants={cardsVariant}
+              initial="initial"
+              animate="animate"
+              onClick={() => handlePopout(card)}
+              key={card.name}
+            >
+              <motion.div
+                variants={cardsChildVariant}
                 className="recipes__card"
                 key={card.id}
                 style={{ backgroundImage: `URL(${card.imageURL})` }}
               >
                 <div className="overlay" />
                 <h6>{card.name}</h6>
-              </div>
-            </button>
+              </motion.div>
+            </motion.button>
           ))}
         {popoutOpen && (
           <div className="recipesPopout">
             <div className="recipesPopout__mainCont">
               <div className="closeButton">
-                <button onClick={() => setPopoutOpen(false)}>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => setPopoutOpen(false)}
+                >
                   <img src={xButton} alt="circle with x" />
-                </button>
+                </motion.button>
               </div>
               <div
                 className="headerImg"

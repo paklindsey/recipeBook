@@ -74,8 +74,11 @@ const AddRecipeForm = () => {
             onChange={(e) => {
               setImageUpload(e.target.files[0]);
             }}
+            className="imgUploadLabel"
           />
-          <button onClick={uploadImage}>Upload Image</button>
+          <button onClick={uploadImage} className="imgUploadButton">
+            Upload Image
+          </button>
           <input type="submit" className="submitButton" />
         </form>
       </div>
