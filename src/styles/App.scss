@@ -16,6 +16,10 @@
   src: url(../fonts/segoeuisl.ttf);
 }
 @font-face {
+  font-family: segoeBold;
+  src: url(../fonts/segoeuib.ttf);
+}
+@font-face {
   font-family: waverly;
   src: url(../fonts/waverly.ttf);
 }
@@ -68,6 +72,10 @@ p {
   font-family: segoeSemiLight;
   font-size: 18px;
 }
+p.bold {
+  font-family: segoeBold;
+  font-size: 18px;
+}
 a {
   color: $navy;
   text-decoration: none;
@@ -77,4 +85,9 @@ a {
   @media screen and (max-width: 768px) {
     word-break: break-all;
   }
+}
+button {
+  border: none;
+  outline: none;
+  background: none;
 }
