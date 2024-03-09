@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../../styles/recipes.scss";
 import { addDoc, collection } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL, put } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../config/firebase";
 import { v4 } from "uuid";
 
